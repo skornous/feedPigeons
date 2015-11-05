@@ -103,4 +103,12 @@ public class World {
         str += "]";
         return str;
     }
+
+    public List<Bird> getBirdList() {
+        return birdList;
+    }
+
+    public List<Food> getFoodList() {
+        return foodList;
+    }
 }

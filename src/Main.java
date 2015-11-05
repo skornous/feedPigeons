@@ -1,4 +1,5 @@
 import poa.exercices.feedPigeons.World;
+import poa.exercices.feedPigeons.interfaces.UserInterface;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,5 +7,6 @@ public class Main {
         World w = new World();
 
         w.run();
+        UserInterface ui = new UserInterface();
     }
 }
