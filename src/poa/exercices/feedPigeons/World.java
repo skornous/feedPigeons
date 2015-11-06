@@ -15,6 +15,23 @@ public class World {
         this.foodList = new ArrayList<>();
     }
 
+    public void init() {
+        System.out.println("Init game");
+        Case initBirds = new Case(0, 0);
+        this.addBird(new Bird(initBirds, this));
+        this.addBird(new Bird(initBirds, this));
+        this.addBird(new Bird(initBirds, this));
+        this.addBird(new Bird(initBirds, this));
+        this.addBird(new Bird(initBirds, this));
+        this.addBird(new Bird(initBirds, this));
+        this.addBird(new Bird(initBirds, this));
+        this.addBird(new Bird(initBirds, this));
+        this.addFood(new Food(new Case(2, 2)));
+        this.addFood(new Food(new Case(1, 2)));
+        this.addFood(new Food(new Case(1, 1)));
+        this.addFood(new Food(new Case(2, 1)));
+    }
+
     public void run() {
         //TODO start a world of pain and agony
         this.testWhat();
@@ -44,19 +61,6 @@ public class World {
     }
 
     public void testWhat() {
-        Case initBirds = new Case(0, 0);
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addFood(new Food(new Case(2, 2)));
-        this.addFood(new Food(new Case(1, 2)));
-        this.addFood(new Food(new Case(1, 1)));
-        this.addFood(new Food(new Case(2, 1)));
         try {
             System.out.println("---Start---");
             System.out.println(this.toString());

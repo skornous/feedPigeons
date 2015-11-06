@@ -6,21 +6,25 @@ import poa.exercices.feedPigeons.World;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class UserInterface extends JFrame {
 
     private JPanel panel;
     private World w;
+    private java.util.List<EntityShape> shapes;
 
     public UserInterface(World world) {
         super();
         this.panel = new JPanel();
         this.w = world;
+        this.shapes = new ArrayList<>();
 
-        this.add(this.panel);
-
-        panel.setBackground(Color.WHITE);
+//        this.panel.setBackground(Color.WHITE);
+        this.setContentPane(this.panel);
+        this.w.init();
         init();
+        run();
     }
 
     private void init() {
@@ -31,15 +35,25 @@ public class UserInterface extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         for(Bird b : this.w.getBirdList()) {
-            b.registerShape(new BirdShape(new Point(b.getPosition().getX(), b.getPosition().getY())));
+            BirdShape birdShape = new BirdShape(new Point(b.getPosition().getX(), b.getPosition().getY()));
+            b.registerShape(birdShape);
+            this.shapes.add(birdShape);
         }
 
         for(Food f : this.w.getFoodList()) {
-            f.registerShape(new FoodShape(new Point(f.getPosition().getX(), f.getPosition().getY())));
+            FoodShape foodShape = new FoodShape(new Point(f.getPosition().getX(), f.getPosition().getY()));
+            f.registerShape(foodShape);
+            this.shapes.add(foodShape);
         }
     }
 
     public void run() {
-        this.w.run();
+        for (EntityShape es : this.shapes) {
+            System.out.println("Entity created");
+            System.out.println(es);
+            es.repaint();
+        }
+        this.setSize(501, 501);
+        this.setSize(500, 500);
     }
 }

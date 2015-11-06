@@ -6,7 +6,7 @@ public class Main {
         //TODO launch it
         World w = new World();
 
-        w.run();
-        UserInterface ui = new UserInterface();
+//        w.run();
+        UserInterface ui = new UserInterface(w);
     }
 }
