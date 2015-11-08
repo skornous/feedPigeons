@@ -2,10 +2,9 @@ package poa.exercices.feedPigeons.interfaces;
 
 import poa.exercices.feedPigeons.utils.Case;
 
-import javax.swing.*;
 import java.awt.*;
 
-public abstract class EntityShape extends JComponent {
+public abstract class EntityShape {
 
     private Point position;
     private Rectangle drawing;
@@ -16,12 +15,6 @@ public abstract class EntityShape extends JComponent {
         this.position = position;
         this.drawing = d;
         this.color = c;
-    }
-
-    public void PaintComponent(Graphics g){
-        super.paintComponent(g);
-        g.setColor(this.color);
-        g.fillRect(drawing.x,drawing.y,drawing.width,drawing.height);
     }
 
     protected abstract void init();
@@ -48,9 +41,10 @@ public abstract class EntityShape extends JComponent {
         return "EntityShape{Color:" + this.color + ", Position: " + this.position + ", Rectangle: " + this.drawing + "}";
     }
 
-    @Override
-    public void paintComponent(Graphics g) {
-        g.setColor(this.color);
-        g.fillRect(this.drawing.x, this.drawing.y, this.drawing.width, this.drawing.height);
-    }
+//    @Override
+//    public void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        g.setColor(this.color);
+//        g.fillRect(this.drawing.x, this.drawing.y, this.drawing.width, this.drawing.height);
+//    }
 }

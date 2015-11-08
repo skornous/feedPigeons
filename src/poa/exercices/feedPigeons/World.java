@@ -17,18 +17,14 @@ public class World {
 
     public void init() {
         System.out.println("Init game");
-        Case initBirds = new Case(0, 0);
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addBird(new Bird(initBirds, this));
-        this.addFood(new Food(new Case(0, 0)));
+        this.addBird(new Bird(new Case(0, 0), this));
+        this.addBird(new Bird(new Case(0, 2), this));
+        this.addBird(new Bird(new Case(2, 0), this));
+        this.addBird(new Bird(new Case(2, 3), this));
+        this.addBird(new Bird(new Case(3, 5), this));
+        this.addBird(new Bird(new Case(5, 3), this));
+        this.addFood(new Food(new Case(9, 9)));
         this.addFood(new Food(new Case(4, 6)));
-        this.addFood(new Food(new Case(0, 0)));
         this.addFood(new Food(new Case(9, 3)));
     }
 
