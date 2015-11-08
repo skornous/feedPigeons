@@ -18,10 +18,11 @@ public class UserInterface extends JFrame {
         super();
         this.panel = new JPanel();
         this.w = world;
-        this.shapes = new ArrayList<>();
+        this.shapes = new ArrayList<EntityShape>();
 
-//        this.panel.setBackground(Color.WHITE);
+        this.panel.setBackground(Color.WHITE);
         this.setContentPane(this.panel);
+
         this.w.init();
         init();
         run();
@@ -38,13 +39,15 @@ public class UserInterface extends JFrame {
             BirdShape birdShape = new BirdShape(new Point(b.getPosition().getX(), b.getPosition().getY()));
             b.registerShape(birdShape);
             this.shapes.add(birdShape);
+            this.add(birdShape);        //Nico
         }
 
         for(Food f : this.w.getFoodList()) {
             FoodShape foodShape = new FoodShape(new Point(f.getPosition().getX(), f.getPosition().getY()));
             f.registerShape(foodShape);
             this.shapes.add(foodShape);
-        }
+            this.add(foodShape);        //Nico
+    }
     }
 
     public void run() {

@@ -11,8 +11,8 @@ public class World {
     // size 10/10
 
     public World() {
-        this.birdList = new ArrayList<>();
-        this.foodList = new ArrayList<>();
+        this.birdList = new ArrayList<Bird>();
+        this.foodList = new ArrayList<Food>();
     }
 
     public void init() {
@@ -26,10 +26,10 @@ public class World {
         this.addBird(new Bird(initBirds, this));
         this.addBird(new Bird(initBirds, this));
         this.addBird(new Bird(initBirds, this));
-        this.addFood(new Food(new Case(2, 2)));
-        this.addFood(new Food(new Case(1, 2)));
-        this.addFood(new Food(new Case(1, 1)));
-        this.addFood(new Food(new Case(2, 1)));
+        this.addFood(new Food(new Case(0, 0)));
+        this.addFood(new Food(new Case(4, 6)));
+        this.addFood(new Food(new Case(0, 0)));
+        this.addFood(new Food(new Case(9, 3)));
     }
 
     public void run() {

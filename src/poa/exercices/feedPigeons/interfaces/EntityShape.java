@@ -18,6 +18,12 @@ public abstract class EntityShape extends JComponent {
         this.color = c;
     }
 
+    public void PaintComponent(Graphics g){
+        super.paintComponent(g);
+        g.setColor(this.color);
+        g.fillRect(drawing.x,drawing.y,drawing.width,drawing.height);
+    }
+
     protected abstract void init();
 
     public void move(Case newPosition) {
