@@ -10,12 +10,14 @@ public class World {
     private List<Bird> birdList;
     private List<Food> foodList;
     private UserInterface ui;
+    private boolean running;
     // size 10/10
 
     public World(UserInterface ui) {
         this.birdList = new ArrayList<>();
         this.foodList = new ArrayList<>();
         this.ui = ui;
+        this.running = true;
 
         this.init();
         this.ui.init(this);
@@ -25,20 +27,44 @@ public class World {
 
     public void init() {
         System.out.println("Init game");
-        this.addBird(new Bird(new Case(0, 0), this));
-        this.addBird(new Bird(new Case(0, 2), this));
-        this.addBird(new Bird(new Case(2, 0), this));
-        this.addBird(new Bird(new Case(2, 3), this));
-        this.addBird(new Bird(new Case(3, 5), this));
-        this.addBird(new Bird(new Case(5, 3), this));
-        this.addFood(new Food(new Case(9, 9)));
-        this.addFood(new Food(new Case(4, 6)));
-        this.addFood(new Food(new Case(9, 3)));
+        this.addBird(new Bird(new Case(150, 0), this));
+        this.addBird(new Bird(new Case(0, 200), this));
+        this.addBird(new Bird(new Case(490, 0), this));
+        this.addBird(new Bird(new Case(250, 350), this));
+        this.addBird(new Bird(new Case(360, 500), this));
+        this.addBird(new Bird(new Case(490, 300), this));
+        this.addFood(new Food(new Case(450, 450)));
+        this.addFood(new Food(new Case(400, 650)));
+        this.addFood(new Food(new Case(410, 3)));
     }
 
     public void run() {
-        //TODO start a world of pain and agony
-        this.testWhat();
+        //start a world of pain and agony
+        System.out.println("---Start---");
+        System.out.println(this.toString());
+        System.out.println("---Initial State---");
+        for (Bird b : birdList) {
+            b.start();
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("--- All birds are alive ---");
+        while (this.running) {
+            try {
+                this.ui.reDraw();
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        birdList.forEach(bird -> bird.kill()); // kill all bird to clean up memory
+        System.out.println("---Final State---");
+        System.out.println(this.toString());
+        System.out.println("---Stop---");
+
     }
 
     public void addBird(Bird b) {
@@ -62,36 +88,6 @@ public class World {
         }
 
         return nearest;
-    }
-
-    public void testWhat() {
-        System.out.println("---Start---");
-        System.out.println(this.toString());
-        System.out.println("---Initial State---");
-        for (Bird b : birdList) {
-            b.start();
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("--- All birds are alive ---");
-        //// TODO: 08/11/2015 make a variable from the while true
-        while (true) {
-            try {
-                this.ui.reDraw();
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-//        for (Bird b : birdList) {
-//            b.kill();
-//        }
-//        System.out.println("---Final State---");
-//        System.out.println(this.toString());
-//        System.out.println("---Stop---");
     }
 
     public void removeFood(Food f) {

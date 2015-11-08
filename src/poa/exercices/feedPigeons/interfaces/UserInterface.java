@@ -44,7 +44,6 @@ public class UserInterface extends JFrame {
     }
 
     public void reDraw() {
-        System.out.println("redraw");
         this.panel.repaint();
     }
 

@@ -32,7 +32,7 @@ public class Bird extends Entity {
             this.doSomethingWithYourLife();
 
             try {
-                sleep(250);
+                sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -40,10 +40,10 @@ public class Bird extends Entity {
     }
 
     private void doSomethingWithYourLife() {
-        //TODO look for nearby food
+        //look for nearby food
         Food nearestFood = this.seekForFood();
         if (nearestFood != null) {
-            //TODO Move toward that food
+            //Move toward that food
             System.out.println("food nearby !");
             this.moveToward(nearestFood);
             if (nearestFood.getPosition().distanceTo(this.position) == 0) { // eat food if on it
@@ -52,9 +52,9 @@ public class Bird extends Entity {
                 this.world.removeFood(nearestFood);
             }
         } else {
-            //TODO No food ? Go to sleep
+            //No food ? Go to sleep
             try {
-                sleep(200);
+                sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
