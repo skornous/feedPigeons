@@ -25,20 +25,21 @@ public class Drawing extends JPanel {
         for (EntityShape es : this.shapes) {
             System.out.println("Entity created");
             System.out.println(es);
-//            es.repaint();
         }
     }
 
     @Override
     public void paintComponent(Graphics g) {
-//        this.setBackground(Color.WHITE);
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-
         for (EntityShape es : this.shapes) {
             g.setColor(es.getColor());
             Rectangle esDrawing = es.getDrawing();
             g.fillRect(esDrawing.x, esDrawing.y, esDrawing.width, esDrawing.height);
         }
+    }
+
+    public void removeShape(EntityShape es) {
+        this.shapes.remove(es);
     }
 }

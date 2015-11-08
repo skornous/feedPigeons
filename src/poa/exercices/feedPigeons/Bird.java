@@ -32,7 +32,7 @@ public class Bird extends Entity {
             this.doSomethingWithYourLife();
 
             try {
-                this.sleep(1);
+                sleep(250);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -54,7 +54,7 @@ public class Bird extends Entity {
         } else {
             //TODO No food ? Go to sleep
             try {
-                this.sleep(20);
+                sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -63,6 +63,7 @@ public class Bird extends Entity {
 
     private void moveToward(Food f) {
         this.position.moveTo(f.getPosition());
+        this.shape.move(this.getGridPosition());
     }
 
     private Food seekForFood() {

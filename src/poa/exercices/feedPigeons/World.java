@@ -1,5 +1,6 @@
 package poa.exercices.feedPigeons;
 
+import poa.exercices.feedPigeons.interfaces.UserInterface;
 import poa.exercices.feedPigeons.utils.Case;
 
 import java.util.ArrayList;
@@ -8,11 +9,18 @@ import java.util.List;
 public class World {
     private List<Bird> birdList;
     private List<Food> foodList;
+    private UserInterface ui;
     // size 10/10
 
-    public World() {
-        this.birdList = new ArrayList<Bird>();
-        this.foodList = new ArrayList<Food>();
+    public World(UserInterface ui) {
+        this.birdList = new ArrayList<>();
+        this.foodList = new ArrayList<>();
+        this.ui = ui;
+
+        this.init();
+        this.ui.init(this);
+        this.ui.run();
+        this.run();
     }
 
     public void init() {
@@ -57,27 +65,37 @@ public class World {
     }
 
     public void testWhat() {
-        try {
-            System.out.println("---Start---");
-            System.out.println(this.toString());
-            System.out.println("---Initial State---");
-            for (Bird b : birdList) {
-                b.start();
+        System.out.println("---Start---");
+        System.out.println(this.toString());
+        System.out.println("---Initial State---");
+        for (Bird b : birdList) {
+            b.start();
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            Thread.sleep(20);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            for (Bird b : birdList) {
-                b.kill();
-            }
-            System.out.println("---Final State---");
-            System.out.println(this.toString());
-            System.out.println("---Stop---");
         }
+        System.out.println("--- All birds are alive ---");
+        //// TODO: 08/11/2015 make a variable from the while true
+        while (true) {
+            try {
+                this.ui.reDraw();
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+//        for (Bird b : birdList) {
+//            b.kill();
+//        }
+//        System.out.println("---Final State---");
+//        System.out.println(this.toString());
+//        System.out.println("---Stop---");
     }
 
     public void removeFood(Food f) {
+        this.ui.eatFood(f.getShape());
         this.foodList.remove(f);
     }
 
@@ -87,7 +105,7 @@ public class World {
     }
 
     private String listB(List<Bird> objects) {
-        String str = new String("[");
+        String str = "[";
         for (Object o : objects) {
             str += o + ", ";
         }
@@ -96,7 +114,7 @@ public class World {
     }
 
     private String listF(List<Food> objects) {
-        String str = new String("[");
+        String str = "[";
         for (Object o : objects) {
             str += o + ", ";
         }
