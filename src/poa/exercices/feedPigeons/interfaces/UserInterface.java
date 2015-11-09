@@ -14,9 +14,6 @@ public class UserInterface extends JFrame {
     public UserInterface() {
         super();
         this.setSize(new Dimension(500, 500));
-        this.panel = new Drawing(this);
-
-        this.setContentPane(this.panel);
     }
 
     public void init(World w) {
@@ -24,6 +21,9 @@ public class UserInterface extends JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.panel = new Drawing(this, w);
+        this.setContentPane(this.panel);
 
         for (Bird b : w.getBirdList()) {
             BirdShape birdShape = new BirdShape(b.getGridPosition());

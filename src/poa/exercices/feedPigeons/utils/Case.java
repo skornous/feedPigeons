@@ -1,5 +1,7 @@
 package poa.exercices.feedPigeons.utils;
 
+import java.awt.*;
+
 public class Case {
     protected int x;
     protected int y;
@@ -7,6 +9,10 @@ public class Case {
     public Case(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public Case(Point point) {
+        this(point.x, point.y);
     }
 
     public int getX() {

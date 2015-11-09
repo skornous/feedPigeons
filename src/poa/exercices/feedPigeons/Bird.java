@@ -79,7 +79,10 @@ public class Bird extends Entity {
         return "Bird{ID: " + this.getIdentifier() +  ",Case:" + this.getPosition() + "}";
     }
 
-    public int getHunger() {
-        return this.hunger;
+    public void flee() {
+        int x = (int) (Math.random() * (worldSize - 50)),
+                y = (int) (Math.random() * (worldSize - 50));
+        this.setPosition(new Case(x, y));
+        this.shape.move(this.getGridPosition());
     }
 }

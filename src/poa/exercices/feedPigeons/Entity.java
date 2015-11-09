@@ -6,6 +6,7 @@ import poa.exercices.feedPigeons.utils.Case;
 import java.awt.*;
 
 public abstract class Entity extends Thread {
+    protected final static int worldSize = 500;
     private final static int gridSizer = 1;
     protected static long id = 0;
     protected long identifier;
